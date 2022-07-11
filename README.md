@@ -2,4 +2,6 @@
 
 Installation:
 
-> pip install git+https://github.com/prisae/tlecture
+```
+pip install git+https://github.com/prisae/tlecture
+```
