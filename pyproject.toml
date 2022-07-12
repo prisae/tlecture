@@ -18,6 +18,9 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
+[tool.setuptools]
+packages = ["tlecture", ]
+
 [project.urls]
 "Homepage" = "https://github.com/prisae/tlecture"
 "Bug Tracker" = "https://github.com/prisae/tlecture/issues"

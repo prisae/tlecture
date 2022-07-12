@@ -1,0 +1,157 @@
+\documentclass[usepdftitle=false, aspectratio=169]{beamer}
+\usepackage{pgfpages}
+
+\setbeameroption{hide notes}
+\usepackage[theorems]{tcolorbox}
+
+\definecolor{mygreen}{rgb}{.125,.5,.25}
+\definecolor{myred}{rgb}{0.8, 0.0, 0.0}
+\definecolor{myblue}{rgb}{0,0,.8}
+
+% --- THEME ---
+\usetheme[progressbar=frametitle]{metropolis}
+\useoutertheme{metropolis}
+\useinnertheme{metropolis}
+\usefonttheme{metropolis}
+\usecolortheme{spruce}  % spruce, metropolis, dove, crane, beaver, seagull
+\setbeamercolor{background canvas}{bg=white}
+\usecolortheme[named=mygreen]{structure}
+\usefonttheme[onlymath]{serif}
+\setbeamertemplate{frame numbering}[counter]  % none, counter, fraction
+
+% --- PACKAGES ---
+\usepackage[UKenglish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+% \usepackage{appendixnumberbeamer}
+\usepackage{upquote}
+\usepackage[straightquotes]{newtxtt}
+\usetikzlibrary{positioning}
+% \usepackage{minted}
+\usepackage{multicol}
+\usepackage{xspace}
+\usepackage{booktabs}
+\usepackage{siunitx}
+
+% --- SETTINGS ---
+\graphicspath{{./figures/}}
+\setlength{\fboxsep}{0pt}
+\frenchspacing
+% Avoid font-warning with itemize bullets.
+\renewcommand\textbullet{\ensuremath{\bullet}}
+
+% --- OWN COMMANDS ---
+\newcommand{\bdra}{\ensuremath{\boldsymbol \Rightarrow }~}
+\newcommand{\bdla}{\ensuremath{\boldsymbol \Leftarrow }~}
+\newcommand{\dra}{\ensuremath{\Rightarrow }~}
+\newcommand{\dla}{\ensuremath{\Leftarrow }~}
+\newcommand{\mr}[1]{\mathrm{#1}}
+\newcommand{\ohmm}{\ensuremath{\Omega\,}\text{m}\xspace}
+\newcommand{\emg}[2]{\texttt{emg#1#2}\xspace}
+\newcommand{\emsig}{\texttt{emsig}\xspace}
+\newcommand{\mare}{\texttt{MARE2DEM}\xspace}
+\newcommand{\geomar}[2]{\texttt{GEOMAR#1#2}\xspace}
+\newcommand{\gtem}[2]{\texttt{gTEM#1#2}\xspace}
+\newcommand{\empymod}{\texttt{empymod}\xspace}
+\newcommand{\simpeg}{\texttt{SimPEG}\xspace}
+\newcommand{\pygimli}{\texttt{pyGIMLi}\xspace}
+\newcommand{\discretize}{\texttt{discretize}\xspace}
+\newcommand{\custem}{\texttt{custEM}\xspace}
+\newcommand{\petgem}{\texttt{PETGEM}\xspace}
+\newcommand{\rmk}[1]{{\color{red}\bfseries #1}}
+\newcommand{\maybe}[1]{{\color{gray} #1}}
+\newcommand{\todo}{{\color{myred}\texttt{TODO:}}\xspace}
+\newcommand{\bm}[1]{{\mathbf{#1}}}
+
+\newcommand{\code}[1]{\texttt{\color{mygreen}#1}}
+
+% Add page number to slides
+\newcommand{\ato}{\addtocounter{framenumber}{1}}
+
+% --- TITLE-STUFF ---
+\newcommand{\ttitle}{From scripting to coding in 30 minutes}
+\title{\ttitle}
+\subtitle{How to refactor, document, and distribute your code (example using
+Python)}
+\author{Dr. Dieter Werthmüller}
+\date{Trial Lecture and Interview; 12 July 2022}
+\institute{Dep. Geoscience \& Engineering, CEG, TU Delft}
+\hypersetup{
+  pdftitle={\ttitle},
+  allcolors=mygreen,
+ colorlinks=true
+}
+
+% --- SLIDES ---
+\begin{document}
+\metroset{block=fill}  % Fills the block-environment
+
+\ato % ---------------------------------------------------------------------- %
+\maketitle
+
+\begin{frame}
+  {After today's lecture you should know\ldots}
+  \begin{itemize}\itemsep0.5cm
+    \item when and why to refactor your scripts/code;
+    \item when and why to move from a notebook to a Python file;
+    \item how to document your functions;
+    \item how to create a module;
+    \item how to easily distribute your module.
+  \end{itemize}
+
+  ~\\
+  \centering
+  \alert{\dra Let's start in a Jupyter Notebook!}
+\end{frame}
+
+\begin{frame}
+  {Checklist}
+
+  \begin{itemize}\itemsep .3cm
+    \item If similar statements repeat over and over in a script\\
+      \alert{\dra create a function}
+    \item \alert{Document your functions}; for your future self and others
+    \item If you use similar statements or functions in different notebooks of
+      a directory\\
+      \alert{\dra create a python-file that you can import}
+    \item If you use similar statements or functions in different places\\
+      \alert{\dra create a python module that you can import anywhere}
+    \item Put it online (e.g. GitHub), so anyone can easily install it via\\
+      \code{pip install git+https://github.com/\{username\}/\{reponame\}}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  {Advanced topics and further info}
+
+  \begin{columns}[c]
+    \column{.5\textwidth}
+      \begin{itemize}
+        \item Deploying to PyPi and Conda
+        \item Testing (plus linting, coverage)
+        \item Continuous Integration
+      \end{itemize}
+
+    \column{.5\textwidth}
+      \begin{itemize}
+        \item Benchmarking
+        \item Creating a manual
+      \end{itemize}
+
+  \end{columns}
+
+  ~\\[.5cm]
+  Further info:
+  \begin{itemize}
+    \item You can find the material of this lecture on
+      \href{https://github.com/prisae/tlecture}{github.com/prisae/tlecture}
+    \item For more information about creating a module, see
+  \href{https://packaging.python.org/en/latest/tutorials/packaging-projects/}%
+       {packaging.python.org/en/latest/tutorials/packaging-projects}
+  \end{itemize}
+
+\end{frame}
+
+\end{document}
